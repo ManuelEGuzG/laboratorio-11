@@ -4,22 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Laboratorio 11 - User Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script type="module" src="/src/main.js"></script>
   <style>
+    :root { --font: "Inter", system-ui, sans-serif; }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       min-height: 100vh;
       display: grid;
       place-items: center;
-      background: #16213e;
-      font-family: system-ui, sans-serif;
+      font-family: var(--font);
+      padding: 1.5rem;
+      color: #e2e8f0;
+      background:
+        radial-gradient(1200px 600px at 15% -10%, #243b6b 0%, transparent 55%),
+        radial-gradient(1000px 700px at 110% 110%, #0f766e 0%, transparent 50%),
+        #0a0f1e;
     }
   </style>
 </head>
 <body>
 
   <user-dashboard>
-    <user-card avatar="🧑‍🏫" name="Alonso" role="Profesor"></user-card>
+    <user-card avatar="A" name="Alonso" role="Profesor"></user-card>
     <weather-time location="liberia+guanacaste"></weather-time>
     <warning-badge>Sesión por expirar</warning-badge>
   </user-dashboard>
