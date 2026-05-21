@@ -4,81 +4,60 @@
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          gap: 1.6rem;
-          padding: 1.5rem 1.6rem;
+          gap: 1.4rem;
+          padding: 1.4rem 1.5rem;
           box-sizing: border-box;
           height: 100%;
-          color: #fff;
-          border-radius: 18px;
-          border: 1px solid rgba(255, 255, 255, 0.14);
-          background:
-            radial-gradient(120% 120% at 0% 0%, rgba(255,255,255,0.18) 0%, transparent 45%),
-            linear-gradient(160deg, #2563eb 0%, #1e3a8a 100%);
-          position: relative;
-          overflow: hidden;
-        }
-        :host::after {
-          content: "";
-          position: absolute;
-          inset: 0;
-          background: radial-gradient(60% 80% at 100% 0%, rgba(255,255,255,0.12), transparent 60%);
-          pointer-events: none;
-        }
-        .top { display: flex; align-items: center; gap: 1rem; z-index: 1; }
-        .avatar {
-          width: 58px;
-          height: 58px;
           border-radius: 16px;
-          display: grid;
-          place-items: center;
-          font-size: 1.4rem;
-          font-weight: 700;
-          background: rgba(255, 255, 255, 0.2);
-          border: 1px solid rgba(255, 255, 255, 0.3);
-          box-shadow: 0 6px 16px rgba(0,0,0,0.25);
-          flex-shrink: 0;
+          border: 1px solid rgba(96, 165, 250, 0.4);
+          background: linear-gradient(180deg, rgba(96,165,250,0.14), rgba(96,165,250,0.06));
+          color: #bfdbfe;
         }
-        .info { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
+        .top { display: flex; align-items: center; gap: 0.9rem; }
+        .avatar {
+          display: grid; place-items: center;
+          width: 46px; height: 46px;
+          flex-shrink: 0;
+          border-radius: 12px;
+          font-size: 1.2rem; font-weight: 700;
+          background: rgba(96, 165, 250, 0.18);
+          color: #93c5fd;
+        }
+        .info { display: flex; flex-direction: column; gap: 0.25rem; min-width: 0; }
         .name {
-          font-weight: 700; font-size: 1.2rem; letter-spacing: -0.015em;
+          font-weight: 700; font-size: 1.1rem; color: #eff6ff;
+          letter-spacing: -0.01em;
           white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
         .role {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.4rem;
-          font-size: 0.7rem;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.07em;
-          color: rgba(255, 255, 255, 0.8);
+          display: inline-flex; align-items: center; gap: 0.4rem;
+          font-size: 0.7rem; font-weight: 700;
+          text-transform: uppercase; letter-spacing: 0.07em;
+          color: #93c5fd;
         }
         .role::before {
           content: "";
-          width: 7px; height: 7px; border-radius: 50%;
+          width: 6px; height: 6px; border-radius: 50%;
           background: #86efac;
           box-shadow: 0 0 8px #86efac;
         }
         button {
-          z-index: 1;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
+          display: inline-flex; align-items: center; justify-content: center;
           gap: 0.55rem;
           width: 100%;
-          padding: 0.85rem 1rem;
-          border: none;
-          border-radius: 12px;
-          background: #fff;
-          color: #1e3a8a;
+          padding: 0.75rem 1rem;
+          border: 1px solid rgba(96, 165, 250, 0.45);
+          border-radius: 11px;
+          background: rgba(96, 165, 250, 0.16);
+          color: #dbeafe;
           font-family: inherit;
           font-weight: 600;
-          font-size: 0.95rem;
+          font-size: 0.92rem;
           cursor: pointer;
-          transition: transform 0.12s ease, box-shadow 0.2s ease, background 0.2s ease;
+          transition: background 0.2s ease, transform 0.12s ease;
         }
         button svg { width: 17px; height: 17px; }
-        button:hover { background: #eef2ff; box-shadow: 0 10px 24px rgba(0,0,0,0.28); }
+        button:hover { background: rgba(96, 165, 250, 0.26); }
         button:active { transform: translateY(1px) scale(0.99); }
       </style>
 
@@ -102,10 +81,12 @@
     `),this.shadowRoot.querySelector(`button`).addEventListener(`click`,()=>this.#e())}};customElements.define(`user-card`,r);var i=[{value:`liberia+guanacaste`,label:`Liberia`},{value:`nicoya+guanacaste`,label:`Nicoya`},{value:`santa+cruz+guanacaste`,label:`Santa Cruz`},{value:`bagaces+guanacaste`,label:`Bagaces`},{value:`carrillo+guanacaste`,label:`Carrillo`},{value:`canas+guanacaste`,label:`Cañas`},{value:`abangares+guanacaste`,label:`Abangares`},{value:`tilaran+guanacaste`,label:`Tilarán`},{value:`nandayure+guanacaste`,label:`Nandayure`},{value:`la+cruz+guanacaste`,label:`La Cruz`},{value:`hojancha+guanacaste`,label:`Hojancha`}],a=class extends HTMLElement{data={};loading=!0;constructor(){super(),this.attachShadow({mode:`open`})}connectedCallback(){this.location=this.getAttribute(`location`)??i[0].value,this.render(),this.#e()}get cantonLabel(){return i.find(e=>e.value===this.location)?.label??`Liberia`}get temperature(){return this.data?.temperature}get description(){return this.data?.description??`Sunny`}get wind(){return this.data?.wind??`—`}async#e(){this.loading=!0,this.render();try{let e=`https://goweather.xyz/v2/weather/${this.location}`,t=await fetch(e);this.data=await t.json()}catch{this.data={temperature:`31 °C`,description:`Sunny`,wind:`10 km/h`}}this.loading=!1,this.render()}#t(e){this.location=e.target.value,this.setAttribute(`location`,this.location),this.#e()}render(){if(!this.shadowRoot)return;let e=i.map(e=>`<option value="${e.value}" ${e.value===this.location?`selected`:``}>${e.label}</option>`).join(``),t=this.loading?`<div class="loading"><span></span><span></span><span></span></div>`:`
         <div class="data">
           <div class="temp-row">
-            <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="4"></circle>
-              <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4"></path>
-            </svg>
+            <span class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4"></path>
+              </svg>
+            </span>
             <span class="temp">${this.temperature}</span>
           </div>
           <div class="meta">
@@ -123,18 +104,14 @@
         :host {
           display: flex;
           flex-direction: column;
-          gap: 1.3rem;
-          padding: 1.5rem 1.6rem;
+          gap: 1.2rem;
+          padding: 1.4rem 1.5rem;
           box-sizing: border-box;
           height: 100%;
-          color: #ecfdf5;
-          border-radius: 18px;
-          border: 1px solid rgba(255, 255, 255, 0.14);
-          background:
-            radial-gradient(120% 120% at 100% 0%, rgba(255,255,255,0.16) 0%, transparent 45%),
-            linear-gradient(160deg, #0d9488 0%, #064e3b 100%);
-          position: relative;
-          overflow: hidden;
+          border-radius: 16px;
+          border: 1px solid rgba(45, 212, 191, 0.4);
+          background: linear-gradient(180deg, rgba(45,212,191,0.14), rgba(45,212,191,0.06));
+          color: #99f6e4;
         }
         .head {
           display: flex;
@@ -146,43 +123,50 @@
           display: inline-flex; align-items: center; gap: 0.45rem;
           font-size: 0.7rem; font-weight: 700;
           text-transform: uppercase; letter-spacing: 0.07em;
-          color: rgba(236, 253, 245, 0.82);
+          color: #5eead4;
           line-height: 1.35;
           max-width: 55%;
         }
         .label svg { width: 14px; height: 14px; flex-shrink: 0; }
         select {
           font-family: inherit;
-          font-size: 0.82rem;
-          font-weight: 600;
-          color: #064e3b;
-          background: #ecfdf5;
-          border: 1px solid rgba(255,255,255,0.4);
+          font-size: 0.82rem; font-weight: 600;
+          color: #042f2e;
+          background: #99f6e4;
+          border: 1px solid rgba(45, 212, 191, 0.5);
           border-radius: 10px;
           padding: 0.4rem 0.6rem;
           cursor: pointer;
           min-width: 120px;
           transition: box-shadow 0.2s ease, transform 0.12s ease;
         }
-        select:hover { box-shadow: 0 6px 16px rgba(0,0,0,0.28); }
+        select:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.25); }
         select:active { transform: translateY(1px); }
 
         .data { display: flex; flex-direction: column; gap: 0.6rem; margin-top: auto; }
         .temp-row { display: flex; align-items: center; gap: 0.7rem; }
-        .sun { width: 38px; height: 38px; color: #fde68a; flex-shrink: 0; }
-        .temp { font-size: 2.8rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
+        .icon {
+          display: grid; place-items: center;
+          width: 44px; height: 44px;
+          flex-shrink: 0;
+          border-radius: 12px;
+          background: rgba(45, 212, 191, 0.18);
+          color: #5eead4;
+        }
+        .icon svg { width: 24px; height: 24px; }
+        .temp { font-size: 2.6rem; font-weight: 800; color: #f0fdfa; letter-spacing: -0.02em; line-height: 1; }
         .meta { display: flex; flex-direction: column; gap: 0.3rem; }
-        .desc { font-weight: 700; font-size: 1.05rem; line-height: 1.3; }
+        .desc { font-weight: 700; font-size: 1.05rem; color: #ccfbf1; line-height: 1.3; }
         .wind {
           display: inline-flex; align-items: center; gap: 0.4rem;
-          font-size: 0.82rem; color: rgba(236, 253, 245, 0.78);
+          font-size: 0.82rem; color: #5eead4;
         }
         .wind svg { width: 14px; height: 14px; }
 
-        .loading { display: flex; gap: 8px; padding: 1.2rem 0; }
+        .loading { display: flex; gap: 8px; padding: 1rem 0; }
         .loading span {
           width: 13px; height: 13px; border-radius: 50%;
-          background: rgba(236, 253, 245, 0.9);
+          background: #5eead4;
           animation: bounce 0.9s infinite alternate;
         }
         .loading span:nth-child(2) { animation-delay: 0.15s; }
