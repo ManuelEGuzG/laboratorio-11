@@ -34,81 +34,60 @@ class UserCard extends HTMLElement {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          gap: 1.6rem;
-          padding: 1.5rem 1.6rem;
+          gap: 1.4rem;
+          padding: 1.4rem 1.5rem;
           box-sizing: border-box;
           height: 100%;
-          color: #fff;
-          border-radius: 18px;
-          border: 1px solid rgba(255, 255, 255, 0.14);
-          background:
-            radial-gradient(120% 120% at 0% 0%, rgba(255,255,255,0.18) 0%, transparent 45%),
-            linear-gradient(160deg, #2563eb 0%, #1e3a8a 100%);
-          position: relative;
-          overflow: hidden;
-        }
-        :host::after {
-          content: "";
-          position: absolute;
-          inset: 0;
-          background: radial-gradient(60% 80% at 100% 0%, rgba(255,255,255,0.12), transparent 60%);
-          pointer-events: none;
-        }
-        .top { display: flex; align-items: center; gap: 1rem; z-index: 1; }
-        .avatar {
-          width: 58px;
-          height: 58px;
           border-radius: 16px;
-          display: grid;
-          place-items: center;
-          font-size: 1.4rem;
-          font-weight: 700;
-          background: rgba(255, 255, 255, 0.2);
-          border: 1px solid rgba(255, 255, 255, 0.3);
-          box-shadow: 0 6px 16px rgba(0,0,0,0.25);
-          flex-shrink: 0;
+          border: 1px solid rgba(96, 165, 250, 0.4);
+          background: linear-gradient(180deg, rgba(96,165,250,0.14), rgba(96,165,250,0.06));
+          color: #bfdbfe;
         }
-        .info { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
+        .top { display: flex; align-items: center; gap: 0.9rem; }
+        .avatar {
+          display: grid; place-items: center;
+          width: 46px; height: 46px;
+          flex-shrink: 0;
+          border-radius: 12px;
+          font-size: 1.2rem; font-weight: 700;
+          background: rgba(96, 165, 250, 0.18);
+          color: #93c5fd;
+        }
+        .info { display: flex; flex-direction: column; gap: 0.25rem; min-width: 0; }
         .name {
-          font-weight: 700; font-size: 1.2rem; letter-spacing: -0.015em;
+          font-weight: 700; font-size: 1.1rem; color: #eff6ff;
+          letter-spacing: -0.01em;
           white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
         .role {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.4rem;
-          font-size: 0.7rem;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.07em;
-          color: rgba(255, 255, 255, 0.8);
+          display: inline-flex; align-items: center; gap: 0.4rem;
+          font-size: 0.7rem; font-weight: 700;
+          text-transform: uppercase; letter-spacing: 0.07em;
+          color: #93c5fd;
         }
         .role::before {
           content: "";
-          width: 7px; height: 7px; border-radius: 50%;
+          width: 6px; height: 6px; border-radius: 50%;
           background: #86efac;
           box-shadow: 0 0 8px #86efac;
         }
         button {
-          z-index: 1;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
+          display: inline-flex; align-items: center; justify-content: center;
           gap: 0.55rem;
           width: 100%;
-          padding: 0.85rem 1rem;
-          border: none;
-          border-radius: 12px;
-          background: #fff;
-          color: #1e3a8a;
+          padding: 0.75rem 1rem;
+          border: 1px solid rgba(96, 165, 250, 0.45);
+          border-radius: 11px;
+          background: rgba(96, 165, 250, 0.16);
+          color: #dbeafe;
           font-family: inherit;
           font-weight: 600;
-          font-size: 0.95rem;
+          font-size: 0.92rem;
           cursor: pointer;
-          transition: transform 0.12s ease, box-shadow 0.2s ease, background 0.2s ease;
+          transition: background 0.2s ease, transform 0.12s ease;
         }
         button svg { width: 17px; height: 17px; }
-        button:hover { background: #eef2ff; box-shadow: 0 10px 24px rgba(0,0,0,0.28); }
+        button:hover { background: rgba(96, 165, 250, 0.26); }
         button:active { transform: translateY(1px) scale(0.99); }
       </style>
 

@@ -69,10 +69,12 @@ class WeatherTime extends HTMLElement {
       : /* html */`
         <div class="data">
           <div class="temp-row">
-            <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="4"></circle>
-              <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4"></path>
-            </svg>
+            <span class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4"></path>
+              </svg>
+            </span>
             <span class="temp">${this.temperature}</span>
           </div>
           <div class="meta">
@@ -92,18 +94,14 @@ class WeatherTime extends HTMLElement {
         :host {
           display: flex;
           flex-direction: column;
-          gap: 1.3rem;
-          padding: 1.5rem 1.6rem;
+          gap: 1.2rem;
+          padding: 1.4rem 1.5rem;
           box-sizing: border-box;
           height: 100%;
-          color: #ecfdf5;
-          border-radius: 18px;
-          border: 1px solid rgba(255, 255, 255, 0.14);
-          background:
-            radial-gradient(120% 120% at 100% 0%, rgba(255,255,255,0.16) 0%, transparent 45%),
-            linear-gradient(160deg, #0d9488 0%, #064e3b 100%);
-          position: relative;
-          overflow: hidden;
+          border-radius: 16px;
+          border: 1px solid rgba(45, 212, 191, 0.4);
+          background: linear-gradient(180deg, rgba(45,212,191,0.14), rgba(45,212,191,0.06));
+          color: #99f6e4;
         }
         .head {
           display: flex;
@@ -115,43 +113,50 @@ class WeatherTime extends HTMLElement {
           display: inline-flex; align-items: center; gap: 0.45rem;
           font-size: 0.7rem; font-weight: 700;
           text-transform: uppercase; letter-spacing: 0.07em;
-          color: rgba(236, 253, 245, 0.82);
+          color: #5eead4;
           line-height: 1.35;
           max-width: 55%;
         }
         .label svg { width: 14px; height: 14px; flex-shrink: 0; }
         select {
           font-family: inherit;
-          font-size: 0.82rem;
-          font-weight: 600;
-          color: #064e3b;
-          background: #ecfdf5;
-          border: 1px solid rgba(255,255,255,0.4);
+          font-size: 0.82rem; font-weight: 600;
+          color: #042f2e;
+          background: #99f6e4;
+          border: 1px solid rgba(45, 212, 191, 0.5);
           border-radius: 10px;
           padding: 0.4rem 0.6rem;
           cursor: pointer;
           min-width: 120px;
           transition: box-shadow 0.2s ease, transform 0.12s ease;
         }
-        select:hover { box-shadow: 0 6px 16px rgba(0,0,0,0.28); }
+        select:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.25); }
         select:active { transform: translateY(1px); }
 
         .data { display: flex; flex-direction: column; gap: 0.6rem; margin-top: auto; }
         .temp-row { display: flex; align-items: center; gap: 0.7rem; }
-        .sun { width: 38px; height: 38px; color: #fde68a; flex-shrink: 0; }
-        .temp { font-size: 2.8rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
+        .icon {
+          display: grid; place-items: center;
+          width: 44px; height: 44px;
+          flex-shrink: 0;
+          border-radius: 12px;
+          background: rgba(45, 212, 191, 0.18);
+          color: #5eead4;
+        }
+        .icon svg { width: 24px; height: 24px; }
+        .temp { font-size: 2.6rem; font-weight: 800; color: #f0fdfa; letter-spacing: -0.02em; line-height: 1; }
         .meta { display: flex; flex-direction: column; gap: 0.3rem; }
-        .desc { font-weight: 700; font-size: 1.05rem; line-height: 1.3; }
+        .desc { font-weight: 700; font-size: 1.05rem; color: #ccfbf1; line-height: 1.3; }
         .wind {
           display: inline-flex; align-items: center; gap: 0.4rem;
-          font-size: 0.82rem; color: rgba(236, 253, 245, 0.78);
+          font-size: 0.82rem; color: #5eead4;
         }
         .wind svg { width: 14px; height: 14px; }
 
-        .loading { display: flex; gap: 8px; padding: 1.2rem 0; }
+        .loading { display: flex; gap: 8px; padding: 1rem 0; }
         .loading span {
           width: 13px; height: 13px; border-radius: 50%;
-          background: rgba(236, 253, 245, 0.9);
+          background: #5eead4;
           animation: bounce 0.9s infinite alternate;
         }
         .loading span:nth-child(2) { animation-delay: 0.15s; }
